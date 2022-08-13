@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Cooperate Engagement Battler",
+  "version": "0.1.0",
+  "description": "Track social engagement with a specific cooperation.",
+  "author": "Jerec Tharen",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://linkedin.com/*"],
+      "js": ["main.js"],
+      "css": ["main.css"]
+    }
+  ],
+  "web_accessible_resources": ["static/*"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
