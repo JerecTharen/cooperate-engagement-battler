@@ -12,7 +12,7 @@ setupProject({
       <App />
     </React.StrictMode>
   ),
-  injectExtensionTo: "body",
+  injectExtensionTo: "div#artdeco-toasts__wormhole",
   injectWebAppTo: "#root",
 });
 
