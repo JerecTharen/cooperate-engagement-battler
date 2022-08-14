@@ -1,10 +1,15 @@
 import logo from "./logo.svg";
 import "./App.css";
 import * as AssetsService from "./services/assets-service";
+import ClickListener from "./components/click-listener";
+import { constants } from "./services/constants";
+
 
 function App() {
+
   return (
     <div className="App">
+      <ClickListener {...constants} ></ClickListener>
       <header className="App-header">
         <img
           src={AssetsService.getResourceURL(logo)}

@@ -5,6 +5,7 @@ window.chrome.runtime.onInstalled.addListener(() => {
   console.log(
     "'Create React Chrome Extension - TypeScript' installed/updated..."
   );
+  console.log('This test works');
 });
 
 export default {};
