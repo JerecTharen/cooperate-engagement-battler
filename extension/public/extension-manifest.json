@@ -16,6 +16,9 @@
       "css": ["main.css"]
     }
   ],
+  "permissions": [
+    "*://*.localhost:3000/*"
+  ],
   "web_accessible_resources": ["static/*"],
   "background": {
     "scripts": ["background.js"],

@@ -31,6 +31,28 @@ export default function ClickListener ({companyProfileHref}:ExtensionConstants){
       next: (click)=>{
         console.log('RxJs says: ');
         console.log(click);
+        fetch('http://localhost:3000/test', {headers:{'Access-Control-Allow-Origin': '*','Sec-Fetch-Mode': 'no-cors'}})
+          .then(async resp=>{
+            const getBody = await resp.json();
+            console.log('Get response is: ' + resp.status + ' ' + JSON.stringify(getBody));
+          });
+        fetch(
+            'http://localhost:3000/test',
+            {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Sec-Fetch-Mode': 'no-cors'
+                },
+                body: JSON.stringify({postId: click?.value})
+            }
+        )
+        .then(async (resp)=>{
+            console.log('Post Server response status is: ' + resp.status);
+            const respBody = await resp.json();
+            console.log('Post Server response is: ' + JSON.stringify(respBody));
+        })
       }
     });
 
