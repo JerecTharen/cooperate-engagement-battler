@@ -34,3 +34,5 @@ This will be a Typescript NodeJS REST API server with ExpressJS that will store 
     * With the loot, you can attack other users on the leaderboard to raise your spot
     * Perhaps you can steal their points, or lose your points to them
 * Discord bot as an alternate way to interact with the RPG/Battle system? No matter what the extension would be the only way to acrue points though
+
+## Project Version: 0.2.0
