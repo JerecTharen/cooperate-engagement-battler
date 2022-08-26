@@ -105,4 +105,4 @@ dist
 .tern-port
 
 #Extension constant file because dotenv wont' work for it
-extension/src/services/constants.ts
+chrome-extension/src/pages/content/components/constants.ts
