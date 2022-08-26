@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { app } from './app.js';
 import { AppDataSource } from './app-datasource.js';
 
+//configure the port server will run on
 export const port = 3000;
 
 //initialize typeorm datasource
