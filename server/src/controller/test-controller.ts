@@ -1,13 +1,18 @@
-import { Request, Response, Router } from "express";
+import { Request, Response } from "express";
 import { autoInjectable } from "tsyringe";
+import BaseController from "./base-controller.js";
 
+/**
+ * controller class that contains endpoints from origional boilerplate use for training/teating
+ * 
+ * extends BaseController
+ * Dependency Injection enabled
+ */
 @autoInjectable()
-export default class TestController{
-
-    router: Router;
+export default class TestController extends BaseController{
 
     constructor(){
-        this.router = Router();
+        super();
     }
 
     getTest(resp:Response){

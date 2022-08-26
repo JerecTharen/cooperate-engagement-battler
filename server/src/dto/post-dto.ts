@@ -1,3 +1,6 @@
+/**
+ * Data Transfer Object for Post Entites
+ */
 export class PostDTO{
     id:number;
     postUrn: string;

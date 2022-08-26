@@ -1,28 +1,29 @@
-import { autoInjectable, inject, registry } from "tsyringe";
+import { autoInjectable, inject } from "tsyringe";
 import Post from '../entity/post.js';
 import { IPostRepository } from "../repository/Ipost-repository.js";
 import * as IPostService from './Ipost-service.js';
 import PostRepository from '../repository/post-repository.js';
+import "reflect-metadata";
 
 
 /**
- * implementation of IpostService.Service interface
+ * class that implements IPostService.Service
+ * 
+ * Dependency Injection enabled
  */
  @autoInjectable()
- @registry([{
-     token: "IPostService",
-     useToken: PostService
- }])
 export default class PostService implements IPostService.Service{
 
+    //declare IPostRepository dependency to be injected
     postRepository: IPostRepository;
 
+    //inject the class implementing the IPostRepository interface in the
     constructor(@inject(PostRepository) postRepository: IPostRepository){
-        this.postRepository = postRepository;
-    }
+            this.postRepository = postRepository;
+        }
 
-    getPost(take:number,skip:number): Promise<Post[]>{
-        return this.postRepository.getPost(take,skip)
+    getPageOfPost(take:number,skip:number): Promise<Post[]>{
+        return this.postRepository.getPageOfPost(take,skip)
     }
 
     getPostByUrn(post_urn:string): Promise<Post>{

@@ -1,12 +1,27 @@
 import Post from "../entity/post.js";
+import { IBaseRepository } from "./Ibase-repository.js";
 
-export interface IPostRepository{
-    //return Post matcning the provided id
+export interface IPostRepository extends IBaseRepository{
+
+    /**
+     * return Post matcning the provided id
+     * 
+     * @param input 
+     */
     getPostById(input:number): Promise<Post>;
-    //returns Post matching provided urn
+    
+    /**
+     * returns Post matching provided urn
+     * 
+     * @param input 
+     */
     getPostByUrn(input:string): Promise<Post>;
-    //returns pagnatd array of Post objects
-    getPost(take: number, skip: number): Promise<Post[]>;
-    //save a Post object to the datasource
-    save(input:Post): void;
+
+    /**
+     * returns pagnatd array of Post objects
+     * 
+     * @param take 
+     * @param skip 
+     */
+    getPageOfPost(take: number, skip: number): Promise<Post[]>;
 }

@@ -1,23 +1,24 @@
-import { autoInjectable, registry } from "tsyringe";
+import { autoInjectable } from "tsyringe";
 import { AppDataSource } from '../app-datasource.js';
 import Post from "../entity/post.js";
 import { IPostRepository } from './Ipost-repository.js';
 
+/**
+ * class that implements IPostRepository
+ * 
+ * Dependency Injection enabled
+ */
 @autoInjectable()
-@registry([{
-    token: "IPostRepository",
-    useToken: PostRepository
-}])
 export default class PostRepository implements IPostRepository{
 
-    getPostById (input: number): Promise<Post> {
-        return AppDataSource.manager.findOneBy(Post,{
+    async getPostById (input: number): Promise<Post> {
+        return await AppDataSource.manager.findOneBy(Post,{
             id: input,
         });
     }
 
-    getPost(take: number, skip: number):Promise<Post[]>{
-        const data = AppDataSource.manager.findAndCount(Post,{
+    async getPageOfPost(take: number, skip: number):Promise<Post[]>{
+        const data = await AppDataSource.manager.findAndCount(Post,{
             take: take,
             skip: skip
         });
@@ -25,13 +26,13 @@ export default class PostRepository implements IPostRepository{
     };
 
     async getPostByUrn(input:string): Promise<Post>{
-        const res = AppDataSource.manager.findOneBy(Post,{
+        const res = await AppDataSource.manager.findOneBy(Post,{
             post_urn: input,
         });
         return res;
     }
 
-    async save(input:Post): Promise<void>{
-        await AppDataSource.manager.save(input);
+    save<Post>(input:Post):void{
+        AppDataSource.manager.save(input);
     }
 }
