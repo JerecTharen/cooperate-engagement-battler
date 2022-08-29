@@ -15,6 +15,13 @@ export default class TestController extends BaseController{
         super();
     }
 
+    routes(){
+        //test routes
+        this.router.get('/test', (...[, resp]: [Request, Response]) => resp.send(this.getTest(resp)));
+        this.router.post('/test', (req: Request, resp: Response) => resp.send(this.postTest(req,resp)));
+        return this.router;
+    }
+
     getTest(resp:Response){
         return resp.status(200).send(JSON.stringify({'test': 'sucessful'}));
     }
@@ -27,12 +34,5 @@ export default class TestController extends BaseController{
         else{
             resp.status(200).send(JSON.stringify({...req.body, test: 'successful'}));
         }
-    }
-
-    routes(){
-        //test routes
-        this.router.get('/test', (...[, resp]: [Request, Response]) => resp.send(this.getTest(resp)));
-        this.router.post('/test', (req: Request, resp: Response) => resp.send(this.postTest(req,resp)));
-        return this.router;
     }
 }

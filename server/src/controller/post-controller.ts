@@ -23,6 +23,24 @@ export default class PostController extends BaseController{
     }
 
     /**
+     * function that adds endpoints to the router then returns it
+     * 
+     * @returns 
+     */
+     routes() {
+        //get route using url variable
+        this.router.get('/getPostByUrn/:urn', (req,resp) => this.getPostByUrn(req,resp));
+
+        //get route using url variable
+        this.router.get('/getPageOfPost/:take/:skip', (req,resp) => this.getPageOfPost(req,resp));
+
+
+        //post router using objet to define input type
+        this.router.post('/addPost', (req,resp) => this.addPost(req,resp));
+        return this.router;
+      }
+
+    /**
      * get endpoint for retrieving a post by urn
      * 
      * @param req 
@@ -36,7 +54,7 @@ export default class PostController extends BaseController{
     }
 
     /**
-     * get endpoint for returning a pagnated list of Post
+     * get endpoint for returning a paginated list of Post
      * 
      * @param req 
      * @param resp 
@@ -63,24 +81,6 @@ export default class PostController extends BaseController{
     addPost(req:Request,resp:Response){
         return resp.status(200).send(this.postService.addPost(req.body));
     }
-
-    /**
-     * function that adds endpoints to the router then returns it
-     * 
-     * @returns 
-     */
-    routes() {
-        //get route using url variable
-        this.router.get('/getPostByUrn/:urn', (req,resp) => this.getPostByUrn(req,resp));
-
-        //get route using url variable
-        this.router.get('/getPageOfPost/:take/:skip', (req,resp) => this.getPageOfPost(req,resp));
-
-
-        //post router using objet to define input type
-        this.router.post('/addPost', (req,resp) => this.addPost(req,resp));
-        return this.router;
-      }
 }
 
 /**

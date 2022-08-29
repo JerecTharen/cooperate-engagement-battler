@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 /**
- * abstract class that defines the requiared fields for a controller class
+ * abstract class that defines the required fields for a controller class
  * 
  * all controller classes must extend this one
  */
@@ -11,4 +11,6 @@ export default abstract class BaseController{
     constructor(){
         this.router = Router();
     }
+
+    abstract routes(): Router;
 }
