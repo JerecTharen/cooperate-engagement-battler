@@ -29,10 +29,10 @@ export default class PostController extends BaseController{
      */
      routes() {
         //get route using url variable
-        this.router.get('/getPostByUrn/:urn', (req,resp) => this.getPostByUrn(req,resp));
+        this.router.get('/getPostByUrn', (req,resp) => this.getPostByUrn(req,resp));
 
         //get route using url variable
-        this.router.get('/getPageOfPost/:take/:skip', (req,resp) => this.getPageOfPost(req,resp));
+        this.router.get('/getPageOfPost', (req,resp) => this.getPageOfPost(req,resp));
 
 
         //post router using objet to define input type
@@ -43,11 +43,16 @@ export default class PostController extends BaseController{
     /**
      * get endpoint for retrieving a post by urn
      * 
+     * Path: /post/getPostByUrn
+     * 
+     * Query Params:
+     *  urn: string
+     * 
      * @param req 
      * @param resp 
      */
     getPostByUrn(req:Request,resp:Response){
-        this.postService.getPostByUrn(req.params.urn)
+        this.postService.getPostByUrn(req.query.urn as string)
             .then((post) => {
                 return resp.status(200).send(convertToDTO(post))
         });
@@ -56,12 +61,18 @@ export default class PostController extends BaseController{
     /**
      * get endpoint for returning a paginated list of Post
      * 
+     * Path: /post/getPageOfPost
+     * 
+     * Query Params:
+     *  take: number,
+     *  skip: number
+     * 
      * @param req 
      * @param resp 
      * @returns 
      */
     getPageOfPost(req:Request, resp:Response){
-        const post: Promise<Post[]> = this.postService.getPageOfPost(parseInt(req.params.take),parseInt(req.params.skip));
+        const post: Promise<Post[]> = this.postService.getPageOfPost(parseInt(req.query.take as string),parseInt(req.query.skip as string));
         post.then((e) => {
             if(e){
                 return resp.status(200).send(convertAllToDTO(e));
@@ -73,6 +84,8 @@ export default class PostController extends BaseController{
 
     /**
      * post endpoint for adding a new Post
+     * 
+     * Path: /post/addPost
      * 
      * @param req 
      * @param resp 
