@@ -35,11 +35,11 @@ This folder contains the files for our controller classes. The controller classe
 
 The entity folder contains the TypeORM Entity classes that define the structure of our data when it is persisted. All Entities extend BaseEntity and contain a unique identifier id of a generic type.
 
-### Service:
+### service:
 
 The Service folder contains the service layers of our application. This is where all the business logic of our application lives and serves as a layer of protection for our core domain. Service classes are never called directly by the controller layer instead controllers call on the interface that each service class implements. We use dependency injection to inject the implementing classes at runtime..
 
-### Repository:
+### repository:
 
 The repository folder contains the repository classes which are used to persist our entity objects. Every Repository class extends IBaseRepository and contains the logic for persisting our application data as defined by our entity objects.
 
