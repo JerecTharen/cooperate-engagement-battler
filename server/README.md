@@ -49,16 +49,18 @@ The repository folder contains the repository classes which are used to persist 
 
 DTOs are serializable objects that define the shape of our data being sent to consuming clients. Acts as a contract between the server and consuming clients.
 
-Video Explanation: Why use DTOs (Data Transfer Objects)?
+Video Explanation: [Why use DTOs (Data Transfer Objects)?](https://www.youtube.com/watch?v=JJT1xykf1do&list=LL&index=2)
 
 ### ORM:
 
-Frameworks use to map object types to database schemas
+Frameworks use to map object types to database schemas in our case we are using type ORM see docs below.
 
-### Entity:
+[TypeORM Documentation](https://typeorm.io/)
 
-### Data Access Layer:
+How to Create a new Entity object: [Tutorial](https://typeorm.io/entities)
 
-### Service Layer:
+### Dependency Injection
 
-### Controller Layer:
+Dependency Injection or DI is a concept that is used to managed object dependencies in our applications. Essentially it allows us to create na instance of an object and inject it into another object or function at runtime. This Project uses the [Tsyringe framework](https://github.com/microsoft/tsyringe) for DI implementation.
+
+Tutorial video: [TypeScript Dependency Injection using tsyringe](https://www.youtube.com/watch?v=D1kM5W9r85Q)
