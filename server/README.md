@@ -16,8 +16,8 @@ This project is intended to be deployed with a PostgreSQL database along with th
 # The back end artecture
 
 - Files and Folders:
-  - Main.ts:
-  * The main.ts file is our runner file(file that actually runs the express application) that makes it possible to run our application and inject dependencies that are required throughout the application.
+  ### Main.ts:
+  - The main.ts file is our runner file(file that actually runs the express application) that makes it possible to run our application and inject dependencies that are required throughout the application.
 
 App.ts:
 
