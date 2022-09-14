@@ -13,7 +13,7 @@ This project is intended to be deployed with a PostgreSQL database along with th
 - Install docker compose [a link](https://docs.docker.com/compose/install/)
 - Getting started with docker compose [a link](https://docs.docker.com/compose/gettingstarted/)
 
-# The back end artecture explained
+# Backend Files and Folders Explained
 
 ### Main.ts:
 
@@ -43,24 +43,22 @@ The Service folder contains the service layers of our application. This is where
 
 The repository folder contains the repository classes which are used to persist our entity objects. Every Repository class extends IBaseRepository and contains the logic for persisting our application data as defined by our entity objects.
 
-# Important Concepts to know:
+# Important Concepts and Things to Know:
 
-What is a REST API:
-
-DTO:
+### DTO:
 
 DTOs are serializable objects that define the shape of our data being sent to consuming clients. Acts as a contract between the server and consuming clients.
 
 Video Explanation: Why use DTOs (Data Transfer Objects)?
 
-ORM:
+### ORM:
 
 Frameworks use to map object types to database schemas
 
-Entity:
+### Entity:
 
-Data Access Layer:
+### Data Access Layer:
 
-Service Layer:
+### Service Layer:
 
-Controller Layer:
+### Controller Layer:
