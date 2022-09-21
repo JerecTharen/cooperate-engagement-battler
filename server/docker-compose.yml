@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres_2
+    ports:
+     - 5432:5432
+    environment:
+     - POSTGRES_USER=user
+     - POSTGRES_PASSWORD=password
+
+  pgadmin:
+    image: dpage/pgadmin4
+    hostname: pgadmin
+    container_name: pgadmin_dummy_2_container
+    ports:
+      - 80:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.admin
+      PGADMIN_DEFAULT_PASSWORD: admin

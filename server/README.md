@@ -1,113 +1,66 @@
 # node-typescript-boilerplate
 
-[![Sponsor][sponsor-badge]][sponsor]
-[![TypeScript version][ts-badge]][typescript-4-7]
-[![Node.js version][nodejs-badge]][nodejs]
-[![APLv2][license-badge]][license]
-[![Build Status - GitHub Actions][gha-badge]][gha-ci]
+Boilerplate README
+[a link](https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/README.md)
 
-👩🏻‍💻 Developer Ready: A comprehensive template. Works out of the box for most [Node.js][nodejs] projects.
+# Setting up a Docker Compose Enviorment for local devlopement
 
-🏃🏽 Instant Value: All basic tools included and configured:
+This project is intended to be deployed with a PostgreSQL database along with the possability for more services in the future. As such we have created a local devlopment enviorement with docker compose currently containing an instance of pgadmin(a web based GUI tool to interact with postgresql databases) and a postgresql database.
 
-- [TypeScript][typescript] [4.7][typescript-4-7]
-- [ESM][esm]
-- [ESLint][eslint] with some initial rules recommendation
-- [Jest][jest] for fast unit testing and code coverage
-- Type definitions for Node.js and Jest
-- [Prettier][prettier] to enforce consistent code style
-- NPM [scripts](#available-scripts) for common operations
-- [EditorConfig][editorconfig] for consistent coding style
-- Reproducible environments thanks to [Volta][volta]
-- Example configuration for [GitHub Actions][gh-actions]
-- Simple example of TypeScript code and unit test
+- What is docker [a link]()
+- What is docker compose [a link](https://docs.docker.com/compose/)
+- Install docker [a link](https://docs.docker.com/engine/install/)
+- Install docker compose [a link](https://docs.docker.com/compose/install/)
+- Getting started with docker compose [a link](https://docs.docker.com/compose/gettingstarted/)
 
-🤲 Free as in speech: available under the APLv2 license.
+# Backend Files and Folders Explained
 
-## Getting Started
+### Main.ts:
 
-This project is intended to be used with the latest Active LTS release of [Node.js][nodejs].
+The main.ts file is our runner file(file that actually runs the express application) that makes it possible to run our application and inject dependencies that are required throughout the application.
 
-### Use as a repository template
+### App.ts:
 
-To start, just click the **[Use template][repo-template-action]** link (or the green button). Start adding your code in the `src` and unit tests in the `__tests__` directories.
+This file serves as the root for our backend express application. This is where we create the express object and configure different applications such as CORS, BodyParser and add our controller classes.
 
-### Clone repository
+### App-datasource.ts:
 
-To clone the repository, use the following commands:
+This is where we define the datasource connection setting for TypeORM that is preconfigured to work with our postgresql database defined in our docker-compose.yml file out of the box.
 
-```sh
-git clone https://github.com/jsynowiec/node-typescript-boilerplate
-cd node-typescript-boilerplate
-npm install
-```
+### controller:
 
-### Download latest release
+This folder contains the files for our controller classes. The controller classes contain the methods that our rest APIs endpoints call. Each Controller class extends the BaseController class and has the method route() that returns the router so that we can apply it to our express object in app.ts at start up.
 
-Download and unzip the current **main** branch or one of the tags:
+### entity:
 
-```sh
-wget https://github.com/jsynowiec/node-typescript-boilerplate/archive/main.zip -O node-typescript-boilerplate.zip
-unzip node-typescript-boilerplate.zip && rm node-typescript-boilerplate.zip
-```
+The entity folder contains the TypeORM Entity classes that define the structure of our data when it is persisted. All Entities extend BaseEntity and contain a unique identifier id of a generic type.
 
-## Available Scripts
+### service:
 
-- `clean` - remove coverage data, Jest cache and transpiled files,
-- `prebuild` - lint source files and tests before building,
-- `build` - transpile TypeScript to ES6,
-- `build:watch` - interactive watch mode to automatically transpile source files,
-- `lint` - lint source files and tests,
-- `prettier` - reformat files,
-- `test` - run tests,
-- `test:watch` - interactive watch mode to automatically re-run tests
+The Service folder contains the service layers of our application. This is where all the business logic of our application lives and serves as a layer of protection for our core domain. Service classes are never called directly by the controller layer instead controllers call on the interface that each service class implements. We use dependency injection to inject the implementing classes at runtime..
 
-## Additional Information
+### repository:
 
-### Why include Volta
+The repository folder contains the repository classes which are used to persist our entity objects. Every Repository class extends IBaseRepository and contains the logic for persisting our application data as defined by our entity objects.
 
-[Volta][volta]’s toolchain always keeps track of where you are, it makes sure the tools you use always respect the settings of the project you’re working on. This means you don’t have to worry about changing the state of your installed software when switching between projects. For example, it's [used by engineers at LinkedIn][volta-tomdale] to standardize tools and have reproducible development environments.
+# Important Concepts and Things to Know:
 
-I recommend to [install][volta-getting-started] Volta and use it to manage your project's toolchain.
+### DTO:
 
-### ES Modules
+DTOs are serializable objects that define the shape of our data being sent to consuming clients. Acts as a contract between the server and consuming clients.
 
-This template uses native [ESM][esm]. Make sure to read [this][nodejs-esm], and [this][ts47-esm] first.
+Video Explanation: [Why use DTOs (Data Transfer Objects)?](https://www.youtube.com/watch?v=JJT1xykf1do&list=LL&index=2)
 
-If your project requires CommonJS, you will have to [convert to ESM][sindresorhus-esm].
+### ORM:
 
-Please do not open issues for questions regarding CommonJS or ESM on this repo.
+Frameworks use to map object types to database schemas in our case we are using type ORM see docs below.
 
-## Backers & Sponsors
+[TypeORM Documentation](https://typeorm.io/)
 
-Support this project by becoming a [sponsor][sponsor].
+How to Create a new Entity object: [Tutorial](https://typeorm.io/entities)
 
-## License
+### Dependency Injection
 
-Licensed under the APLv2. See the [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE) file for details.
+Dependency Injection or DI is a concept that is used to managed object dependencies in our applications. Essentially it allows us to create na instance of an object and inject it into another object or function at runtime. This Project uses the [Tsyringe framework](https://github.com/microsoft/tsyringe) for DI implementation.
 
-[ts-badge]: https://img.shields.io/badge/TypeScript-4.7-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2016.13-blue.svg
-[nodejs]: https://nodejs.org/dist/latest-v14.x/docs/api/
-[gha-badge]: https://github.com/jsynowiec/node-typescript-boilerplate/actions/workflows/nodejs.yml/badge.svg
-[gha-ci]: https://github.com/jsynowiec/node-typescript-boilerplate/actions/workflows/nodejs.yml
-[typescript]: https://www.typescriptlang.org/
-[typescript-4-7]: https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/
-[license-badge]: https://img.shields.io/badge/license-APLv2-blue.svg
-[license]: https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE
-[sponsor-badge]: https://img.shields.io/badge/♥-Sponsor-fc0fb5.svg
-[sponsor]: https://github.com/sponsors/jsynowiec
-[jest]: https://facebook.github.io/jest/
-[eslint]: https://github.com/eslint/eslint
-[wiki-js-tests]: https://github.com/jsynowiec/node-typescript-boilerplate/wiki/Unit-tests-in-plain-JavaScript
-[prettier]: https://prettier.io
-[volta]: https://volta.sh
-[volta-getting-started]: https://docs.volta.sh/guide/getting-started
-[volta-tomdale]: https://twitter.com/tomdale/status/1162017336699838467?s=20
-[gh-actions]: https://github.com/features/actions
-[repo-template-action]: https://github.com/jsynowiec/node-typescript-boilerplate/generate
-[esm]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-[sindresorhus-esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
-[nodejs-esm]: https://nodejs.org/docs/latest-v16.x/api/esm.html
-[ts47-esm]: https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#esm-nodejs
-[editorconfig]: https://editorconfig.org
+Tutorial video: [TypeScript Dependency Injection using tsyringe](https://www.youtube.com/watch?v=D1kM5W9r85Q)
